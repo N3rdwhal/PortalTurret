@@ -1,7 +1,7 @@
-#include <Servo.h> //import library for servo to run
+/*#include <Servo.h> //import library for servo to run
 Servo armLeft; //sets the left servo to an object
-int rotation = 0; //creates variable for servo rotation (int = var)
 Servo armRight; //sets the right servo to an object
+int rotation = 0; //creates variable for servo rotation (int = var)
 
 void setup() {
   armLeft.attach(2);  //attach the left servo to pin 2
@@ -15,11 +15,29 @@ void loop() {
      delay(5); //waits 5 miliseconds
      armRight.write(rotation);
      delay(5);
+
   }
   for (rotation = 180; rotation > 0; rotation--) { //goes from 180 degress to 0, changes rotation by -1
      armLeft.write(rotation);  //servo goes to position armLeftRot
      delay(5);
      armRight.write(rotation);
      delay(5);
+  }
+}*/
+int targetAcquired;
+void setup() {
+  Serial.begin(9600);
+  pinMode(4, INPUT);
+}
+
+void loop() {
+  targetAcquired = digitalRead(4);
+    if (targetAcquired == HIGH) {
+      Serial.println("Target Acquired!");
+      delay(20);
+    }
+  else {
+    Serial.println("Target Lost!");
+    delay(20);
   }
 }
